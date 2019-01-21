@@ -19,7 +19,7 @@ module.exports = function (config, v) {
         },
         output: {
             path: path.resolve(__dirname, '../dist'),
-            publicPath: config.url + v + '/',
+            publicPath: './',
             filename: '[name].[chunkhash:8].js'
         },
         resolve: {
