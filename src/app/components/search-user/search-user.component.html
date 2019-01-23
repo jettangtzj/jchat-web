@@ -1,7 +1,7 @@
 <div class="search-user-container">
     <h1 class="float-left search-user-title">抖M</h1>
     <div (click)="stopPropagation($event)" [ngClass]="{'in': inputAnimate === 'in', 'out': inputAnimate === 'out'}" class="search-user-input-wrap">
-        <input spellcheck="false" #searchInput [(ngModel)]="searchKeyword" class="search-user-input input-focus" type="text" placeholder="联系人/群组/聊天室ID">
+        <input spellcheck="false" #searchInput [(ngModel)]="searchKeyword" class="search-user-input input-focus" type="text" placeholder="联系人/群组">
         <span (click)="clearInput()" *ngIf="searchUserResult.isSearch"></span>
         <p></p>
     </div>
