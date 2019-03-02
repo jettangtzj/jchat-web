@@ -32,10 +32,10 @@
 const randomStr = '404';
 
 // appkey : 开发者在极光平台注册的 IM 应用 appkey
-const appkey = '7ff5bb7f1db222416176a47a';
+const appkey = '51f20827335dfeeed460d842';
 
 // masterSecret : 密钥，由前端生成签名时需要填写，有暴露的风险
-const masterSecret = '18ac079c547f0425a1a4015e';
+const masterSecret = 'fcc82c79e3ee402565cf195f';
 
 // isFrontSignature : 是否由前端生成签名，值为true则由前端自动生成签名，值为false则由服务端生成签名，开发者需要在服务端提供post类型接口
 const isFrontSignature = true;
