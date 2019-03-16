@@ -678,6 +678,18 @@ export class ChatComponent implements OnInit, OnDestroy {
                     this.otherOptionScrollBottom = !this.otherOptionScrollBottom;
                 }
                 break;
+			case chatAction.addGroupKeeperEvent:
+				if (chatState.currentIsActive) {
+				    // 触发滚动条向下滚动
+				    this.otherOptionScrollBottom = !this.otherOptionScrollBottom;
+				}
+				break;
+			case chatAction.delGroupKeeperEvent:
+				if (chatState.currentIsActive) {
+				    // 触发滚动条向下滚动
+				    this.otherOptionScrollBottom = !this.otherOptionScrollBottom;
+				}
+				break;
             default:
         }
     }
@@ -975,6 +987,21 @@ export class ChatComponent implements OnInit, OnDestroy {
                         });
                     }
                 }
+			case 80:
+				if (!data.isOffline) {
+				    // 群组管理员变更事件
+				    if (data.extra === 1) {//添加管理员
+				        this.store$.dispatch({
+				            type: chatAction.addGroupKeeperEvent,
+				            payload: data
+				        });
+				    } else if (data.extra === 2) {//取消管理员
+				        this.store$.dispatch({
+				            type: chatAction.delGroupKeeperEvent,
+				            payload: data
+				        });
+				    }
+				}
             case 100:
                 // 好友列表更新同步事件
                 if (!data.isOffline) {
@@ -2274,6 +2301,29 @@ export class ChatComponent implements OnInit, OnDestroy {
             });
         }
     }
+	
+	// 添加群管理员
+	private addGroupKeeperEmit(item){
+		this.store$.dispatch({
+		    type: chatAction.addGroupKeeper,
+		    payload: {
+		        active: this.active,
+		        item
+		    }
+		});
+	}
+	
+	// 删除群管理员
+	private delGroupKeeperEmit(item){
+		this.store$.dispatch({
+		    type: chatAction.delGroupKeeper,
+		    payload: {
+		        active: this.active,
+		        item
+		    }
+		});
+	} 
+	
     // 初始化所有数据
     private init() {
         this.isLoaded = false;

@@ -136,6 +136,14 @@ export class ApiService {
     public delGroupMemSilence(memberObj, success?: Function, error?: Function, timeout?: Function) {
         return this.callback(global.JIM.delGroupMemSilence(memberObj), success, error, timeout);
     }
+	// 添加群管理员
+	public addGroupKeeper(memberObj, success?: Function, error? :Function, timeout?: Function) {
+		return this.callback(global.JIM.addGroupKeeper(memberObj), success, error, timeout);
+	}
+	// 删除群管理员
+	public delGroupKeeper(memberObj, success?: Function, error? :Function, timeout?: Function) {
+		return this.callback(global.JIM.delGroupKeeper(memberObj), success, error, timeout);
+	}
     // 获取群列表
     public getGroups(success?: Function, error?: Function, timeout?: Function) {
         return this.callback(global.JIM.getGroups(), success, error, timeout);

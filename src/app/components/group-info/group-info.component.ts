@@ -27,17 +27,17 @@ export class GroupInfoComponent implements OnInit {
     }
     private changeGroupConversationAction() {
         const group = {
-            appkey: this.groupInfo.info.appkey,
-            avatar: this.groupInfo.info.avatar,
-            avatarUrl: this.groupInfo.info.avatarUrl,
-            ctime: this.groupInfo.info.ctime,
-            desc: this.groupInfo.info.desc,
+            appkey: this.groupInfo.info.appkey,//群所属appkey
+            avatar: this.groupInfo.info.avatar,//群头像
+            avatarUrl: this.groupInfo.info.avatarUrl,//群头像URL
+            ctime: this.groupInfo.info.ctime,//群创建时间
+            desc: this.groupInfo.info.desc,//群描述
             flag: this.groupInfo.info.flag,
-            gid: this.groupInfo.info.gid,
-            key: this.groupInfo.info.gid,
-            max_member_count: this.groupInfo.info.max_member_count,
-            mtime: this.groupInfo.info.mtime,
-            name: this.groupInfo.info.name,
+            gid: this.groupInfo.info.gid,//群id
+            key: this.groupInfo.info.gid,//群id
+            max_member_count: this.groupInfo.info.max_member_count,//最大群成员数量
+            mtime: this.groupInfo.info.mtime,//最近一次群信息修改时间
+            name: this.groupInfo.info.name,//群名称
             type: 4
         };
         this.groupInfo.show = false;

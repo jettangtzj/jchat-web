@@ -42,6 +42,11 @@ export class GroupSettingComponent implements OnInit, DoCheck {
     private updateGroupAvatar: EventEmitter<any> = new EventEmitter();
     @Output()
     private keepSilence: EventEmitter<any> = new EventEmitter();
+	@Output()
+	private addGroupKeeper: EventEmitter<any> = new EventEmitter();
+	@Output()
+	private delGroupKeeper: EventEmitter<any> = new EventEmitter();
+	
     private global = global;
     private searchResult = {
         result: [],
@@ -179,4 +184,10 @@ export class GroupSettingComponent implements OnInit, DoCheck {
     private keepSilenceAction(item) {
         this.keepSilence.emit(item);
     }
+	private addGroupKeeperAction(item) {
+		this.addGroupKeeper.emit(item);
+	}
+	private delGroupKeeperAction(item){
+		this.delGroupKeeper.emit(item);
+	}
 }

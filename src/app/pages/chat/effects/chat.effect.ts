@@ -1837,6 +1837,46 @@ export class ChatEffect {
             }
             return { type: '[chat] delete group member silence useless' };
         });
+	// 添加群组管理员
+	@Effect()
+	private addGroupKeeper$: Observable<Action> = this.actions$
+	    .ofType(chatAction.addGroupKeeper)
+	    .map(toPayload)
+	    .switchMap(async (info) => {
+	        const memberObj = {
+	            gid: info.active.key,
+	            member_usernames: [{ username: info.item.username }]
+	        };
+	        const data: any = await this.apiService.addGroupKeeper(memberObj);
+	        if (data.code) {
+	            const error = {
+	                code: -1,
+	                myText: '添加失败'
+	            };
+	            this.errorFn(error);
+	        }
+	        return { type: '[chat] add groupkeeper useless' };
+	    });
+	// 取消群组管理员
+	@Effect()
+	private delGroupKeeper$: Observable<Action> = this.actions$
+	    .ofType(chatAction.delGroupKeeper)
+	    .map(toPayload)
+	    .switchMap(async (info) => {
+	        const memberObj = {
+	            gid: info.active.key,
+	            member_usernames: [{ username: info.item.username }]
+	        };
+	        const data: any = await this.apiService.delGroupKeeper(memberObj);
+	        if (data.code) {
+	            const error = {
+	                code: -1,
+	                myText: '取消失败'
+	            };
+	            this.errorFn(error);
+	        }
+	        return { type: '[chat] delete groupkeeper useless' };
+	    });
     // 群主或者管理员，收到用户申请入群事件请求头像
     @Effect()
     private receiveGroupInvitationEvent$: Observable<Action> = this.actions$

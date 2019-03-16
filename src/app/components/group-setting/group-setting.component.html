@@ -35,6 +35,10 @@
                 <span class="float-left">屏蔽群消息&nbsp;:&nbsp;</span>
                 <switch-component [state]="groupSetting.active.shield" (changeSwitch)="changeGroupShieldEmit()" class="float-right group-setting-switch"></switch-component>
             </div>
+			<!-- <div class="clearfix group-setting-text">
+			    <span class="float-left">全员禁言&nbsp;:&nbsp;</span>
+			    <switch-component [state]="groupSetting.active.shield" (changeSwitch)="changeGroupShieldEmit()" class="float-right group-setting-switch"></switch-component>
+			</div> -->
             <div class="group-setting-search">
                 <search-member-component [searchResult]="searchResult" (searchKeyup)="seachKeyupEmit($event)" (searchItem)="searchItemEmit($event)" (clearInput)="clearInputEmit()"></search-member-component>
             </div>
@@ -55,6 +59,8 @@
                         <div class="group-setting-host" *ngIf="item.flag === 1" [hoverEvent]="hostHover">
                             <hover-tip-component [hidden]="!hostHover.show" [hoverInfo]="hostHover"></hover-tip-component>
                         </div>
+						<div class="group-setting-keep-silence" *ngIf="item.flag === 0 && groupSetting.memberList[0].username === global.user" (click)="addGroupKeeperAction(item)">设置群管理</div>
+						<div class="group-setting-keep-silence" *ngIf="item.flag === 2 && groupSetting.memberList[0].username === global.user" (click)="delGroupKeeperAction(item)">取消群管理</div>
                         <div class="group-setting-keep-silence" *ngIf="item.flag === 0 && groupSetting.memberList[0].username === global.user && !item.keep_silence" (click)="keepSilenceAction(item)">禁言</div>
                         <div class="group-setting-silence-icon group-setting-delete-silence" *ngIf="item.flag === 0 && groupSetting.memberList[0].username === global.user && item.keep_silence" (click)="keepSilenceAction(item)">
                             <img src="../../../assets/images/keep-silence.svg" alt="">
