@@ -1214,14 +1214,14 @@ export class ChatComponent implements OnInit, OnDestroy {
             this.newMessageNotice.num++;
             clearInterval(this.newMessageNotice.timer);
             this.newMessageNotice.timer = setInterval(() => {
-                if (this.titleService.getTitle() === 'JChat - 极光 IM Demo') {
+                if (this.titleService.getTitle() === 'JChat - 吉信') {
                     this.titleService.setTitle(`jchat(${this.newMessageNotice.num})`);
                 } else {
-                    this.titleService.setTitle('JChat - 极光 IM Demo');
+                    this.titleService.setTitle('JChat - 吉信');
                 }
                 if (this.newMessageNotice.num === 0) {
                     clearInterval(this.newMessageNotice.timer);
-                    this.titleService.setTitle('JChat - 极光 IM Demo');
+                    this.titleService.setTitle('JChat - 吉信');
                 }
             }, 1000);
         }
