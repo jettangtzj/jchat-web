@@ -756,7 +756,7 @@ export class MainComponent implements OnInit, OnDestroy {
                         show: true,
                         info: {
                             title: '退出',          // 模态框标题
-                            tip: '确定要退出web jchat吗？',   // 模态框内容
+                            tip: '确定要退出吉信吗？',   // 模态框内容
                             actionType: mainAction.logoutShowConfirmModal// 哪种操作，点击确定时可以执行对应操作
                             // success: 1 / 2               // 成功的提示框/失败的提示框，1.5s后会自动消失
                         }
