@@ -1139,6 +1139,7 @@ export class ChatEffect {
             if (data.code) {
                 this.errorFn(data);
             } else {
+				//获取首字母
                 Util.getMembersFirstLetter(data.member_list);
                 this.store$.dispatch({
                     type: chatAction.groupInfo,
@@ -1148,6 +1149,7 @@ export class ChatEffect {
                     }
                 });
                 for (let member of data.member_list) {
+					//获取头像
                     if (member.avatar !== '') {
                         const urlObj = { media_id: member.avatar };
                         this.apiService.getResource(urlObj).then((result: any) => {

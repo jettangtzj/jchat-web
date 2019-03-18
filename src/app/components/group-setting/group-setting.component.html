@@ -47,7 +47,7 @@
             <p class="clearfix group-setting-add">
                 <span class="float-left">群成员&nbsp;:&nbsp;</span>
                 <span class="float-left">{{groupSetting.memberList.length}}人</span>
-                <span class="float-right group-setting-add-member" (click)="addMemberAction()">添加群成员</span>
+                <span class="float-right group-setting-add-member" (click)="addMemberAction()" *ngIf="groupSetting.owner === global.user || groupSetting.keeperStr.indexOf(global.user) != -1">添加群成员</span>
             </p>
             <div perfect-scrollbar class="group-setting-scroll">
                 <ul>
@@ -59,17 +59,17 @@
                         <div class="group-setting-host" *ngIf="item.flag === 1" [hoverEvent]="hostHover">
                             <hover-tip-component [hidden]="!hostHover.show" [hoverInfo]="hostHover"></hover-tip-component>
                         </div>
-						<div class="group-setting-keep-silence" *ngIf="item.flag === 0 && groupSetting.memberList[0].username === global.user" (click)="addGroupKeeperAction(item)">设置群管理</div>
-						<div class="group-setting-keep-silence" *ngIf="item.flag === 2 && groupSetting.memberList[0].username === global.user" (click)="delGroupKeeperAction(item)">取消群管理</div>
-                        <div class="group-setting-keep-silence" *ngIf="item.flag === 0 && groupSetting.memberList[0].username === global.user && !item.keep_silence" (click)="keepSilenceAction(item)">禁言</div>
-                        <div class="group-setting-silence-icon group-setting-delete-silence" *ngIf="item.flag === 0 && groupSetting.memberList[0].username === global.user && item.keep_silence" (click)="keepSilenceAction(item)">
+						<div class="group-setting-keep-silence" *ngIf="item.flag === 0 && groupSetting.owner === global.user" (click)="addGroupKeeperAction(item)">设置群管理</div>
+						<div class="group-setting-keep-silence" *ngIf="item.flag === 2 && groupSetting.owner === global.user" (click)="delGroupKeeperAction(item)">取消群管理</div>
+                        <div class="group-setting-keep-silence" *ngIf="item.flag === 0 && !item.keep_silence && (groupSetting.owner === global.user || groupSetting.keeperStr.indexOf(global.user) != -1)" (click)="keepSilenceAction(item)">禁言</div>
+                        <div class="group-setting-silence-icon group-setting-delete-silence" *ngIf="item.flag === 0 && item.keep_silence && (groupSetting.owner === global.user || groupSetting.keeperStr.indexOf(global.user) != -1)" (click)="keepSilenceAction(item)">
                             <img src="../../../assets/images/keep-silence.svg" alt="">
                             <span>解除禁言</span>
                         </div>
-                        <div class="group-setting-silence-icon" *ngIf="item.flag === 0 && groupSetting.memberList[0].username !== global.user && item.keep_silence">
+                        <div class="group-setting-silence-icon" *ngIf="item.flag === 0 && item.keep_silence && groupSetting.owner != global.user && groupSetting.keeperStr.indexOf(global.user) == -1">
                             <img src="../../../assets/images/keep-silence.svg" alt="">
                         </div>
-                        <span (click)="deleteMemberAction(item)" class="group-setting-delete" *ngIf="item.flag === 0 && groupSetting.memberList[0].username === global.user">×</span>
+                        <span (click)="deleteMemberAction(item)" class="group-setting-delete" *ngIf="item.flag === 0 && (groupSetting.owner === global.user || groupSetting.keeperStr.indexOf(global.user) != -1)">×</span>
                     </li>
                 </ul>
             </div>

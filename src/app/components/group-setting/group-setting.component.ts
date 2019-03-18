@@ -69,14 +69,30 @@ export class GroupSettingComponent implements OnInit, DoCheck {
         private elementRef: ElementRef
     ) { }
     public ngOnInit() {
-        // pass
+        //
     }
     public ngDoCheck() {
+		
         // 修改群描述时，调整群成员列表的位置
         if (this.groupSettingHeader.nativeElement) {
             this.listTop = this.groupSettingHeader.nativeElement.offsetHeight;
         }
     }
+	//Respond after Angular checks the component's views and child views / the view that a directive is in.
+	//Called after the ngAfterViewInit() and every subsequent ngAfterContentChecked().
+	public ngAfterViewChecked(){
+		if (this.groupSetting.memberList.length > 0){
+			for (let member of this.groupSetting.memberList) {
+				if(member.flag == 1){//群主
+					this.groupSetting.owner = member.username;
+				}
+				if(member.flag === 2 && this.groupSetting.keeperStr.indexOf(member.username) == -1) {//管理员
+					this.groupSetting.keeperStr += member.username + ",";
+				}
+			}
+		}
+	}
+	
     private stopPropagation(event) {
         event.stopPropagation();
         this.searchResult.show = false;

@@ -67,7 +67,9 @@ export class ChatComponent implements OnInit, OnDestroy {
             desc: '',
             gid: 0
         },
-        memberList: [],
+        memberList: [],//全部群成员
+		owner: '',//群主
+		keeperStr: '',//群管理员用户名字符串，用,分割
         active: {},
         show: false
     };
@@ -2369,7 +2371,9 @@ export class ChatComponent implements OnInit, OnDestroy {
                 desc: '',
                 gid: 0
             },
-            memberList: [],
+            memberList: [],//全部群成员
+			owner: '',//群主
+			keeperStr: '',//群管理员用户名字符串，用,分割
             active: {},
             show: false
         };
